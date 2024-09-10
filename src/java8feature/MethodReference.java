@@ -1,5 +1,9 @@
 package java8feature;
 
+import java8feature.model.MyClass;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -56,9 +60,53 @@ public class MethodReference {
         System.out.println(supplierWithRef.get());  // Output: 13
 
 
+        /**
+         *
+         * Reference to an instance method of an Arbitrary object for a particular type
+         *
+         * we can use the instance method of an arbitrary object of a specific method like "Comparator, Predicates"
+         * like :ClassName::instanceMethodName
+         *
+         * */
 
 
+        List<String> names= Arrays.asList("Mohan", "Raman","Dolly");
+
+        //using lambda
+        names.forEach(name->System.out.println(name));
+
+        //using the method referance
+        names.forEach(System.out::println);
+
+
+        /**
+         *
+         * Reference to a constructor
+         *  to achieve this we have use the new keyword
+         *  like : ClassName::new
+         *
+         *
+         * */
+
+        //Using lambda
+        Supplier<MyClass> myClassSupplier=()->new MyClass();
+
+        //Using Reference method
+        Supplier<MyClass> myClassSupplier1=MyClass::new;
+
+
+        MyClass obj1=myClassSupplier.get();
+        MyClass obj2=myClassSupplier1.get();
+
+
+        System.out.println(obj1.getValue());  // Output: Default Value
+        System.out.println(obj1.getValue());  // Output: Default Value
 
 
     }
+
+
+
+
 }
+
